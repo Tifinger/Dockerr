@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: persondb
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: asdf
+      POSTGRES_DB: persondb
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data # Itt tárolja az adatokat
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata: {}
